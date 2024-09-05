@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :verbs
+  resources :sentences
+  resources :words
 end

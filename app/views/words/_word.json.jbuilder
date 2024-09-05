@@ -1,0 +1,1 @@
+json.extract! word, :id, :word, :translation, :verb, :sentences, :themes
