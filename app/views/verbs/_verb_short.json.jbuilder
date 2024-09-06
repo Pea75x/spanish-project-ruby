@@ -1,0 +1,1 @@
+json.extract! verb, :id, :verb, :translation
