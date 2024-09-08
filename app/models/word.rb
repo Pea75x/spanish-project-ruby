@@ -10,9 +10,10 @@ class Word < ApplicationRecord
 
 
   def verb_id_validation
+    return if verb_id.nil?
+
     verb = Word.find(verb_id)
 
-    errors.add(:verb_id, "can't be the same as the word") if verb_id == id
     errors.add(:verb_id, "can't be added to type verb") if type_verb && verb_id
     errors.add(:verb_id, "word is not of type verb") if verb.type_verb == false
   end
