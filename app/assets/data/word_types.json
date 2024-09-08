@@ -1,11 +1,20 @@
 [
-  "past",
-  "present",
-  "future",
+  "past_tense",
+  "present_tense",
+  "future_tense",
   "me",
   "you",
   "you_formal",
   "we",
   "they",
-  "you_plural"
+  "you_plural",
+  "weather",
+  "food",
+  "activities",
+  "flirting",
+  "travel",
+  "work",
+  "time",
+  "numbers",
+  "shopping"
 ]

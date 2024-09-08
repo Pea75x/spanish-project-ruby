@@ -8,7 +8,7 @@ if word.verb.nil?
   json.verb nil
 else
   json.verb do
-    json.extract! word, :id, :word, :translation
+    json.extract! word.verb, :word, :translation
   end
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_04_102608) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_08_120154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,20 +27,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_04_102608) do
     t.bigint "sentence_id", null: false
   end
 
-  create_table "verbs", force: :cascade do |t|
-    t.string "verb"
-    t.string "translation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "words", force: :cascade do |t|
     t.string "word"
     t.string "translation"
+    t.boolean "type_verb", default: false
     t.string "themes", default: [], array: true
-    t.bigint "verb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "verb_id"
+    t.index ["verb_id"], name: "index_words_on_verb_id"
   end
 
+  add_foreign_key "words", "words", column: "verb_id"
 end
