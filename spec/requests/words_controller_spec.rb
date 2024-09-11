@@ -3,7 +3,7 @@ require "rails_helper"
 describe WordsController, type: :request do
   let!(:tener) { create(:verb) }
   let!(:tengo) { create(:word) }
-  let!(:hacer) {create(:word, word: "hacer")}
+  let!(:hacer) { create(:word, word: "hacer")}
 
   let(:attributes) { {} }
   let(:params) do
@@ -62,8 +62,8 @@ describe WordsController, type: :request do
   describe '#create' do
     let(:attributes) do
       {
-        word: "tengo",
-        translation: "I have",
+        word: "tenemos",
+        translation: "We have",
         themes: ["present_tense"],
         verb_id: tener.id
       }
@@ -82,8 +82,8 @@ describe WordsController, type: :request do
       it "returns the correct data" do
         expect(@response.parsed_body).to include(
           "id" => be_present,
-          "word" => "tengo",
-          "translation" => "I have",
+          "word" => "tenemos",
+          "translation" => "We have",
           "themes" => ["present_tense"],
           "verb" => {
             "word" => "tener",

@@ -34,9 +34,9 @@ describe WordsController, type: :request do
     it "presents the data correctly" do
       data_attributes = @response.parsed_body["data"][0].keys
 
-      expect(data_attributes).to eq(["id", "sentence", "translation"])
+      expect(data_attributes).to eq(["words", "id", "sentence", "translation", "themes",])
       
-      expect(data_attributes).to_not include(["words", "themes", "created_at", "updated_at"])
+      expect(data_attributes).to_not include(["created_at", "updated_at"])
     end
 
     context "using the search" do
