@@ -1,11 +1,11 @@
 class Word < ApplicationRecord
-  validates :word, presence: true, length: { maximum: 50 }
+  validates :word, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :translation, presence: true, length: { maximum: 50 }
   validates :themes, themes: true, allow_blank: true
   validate :verb_id_validation
 
   belongs_to :verb, class_name: 'Word', optional: true
-  has_many :words, class_name: 'Word', foreign_key: 'verb_id'
+  has_many :words, class_name: 'Word', foreign_key: 'verb_id', dependent: :nullify
   has_and_belongs_to_many :sentences
 
 

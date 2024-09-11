@@ -4,7 +4,7 @@
   "future_tense",
   "me",
   "you",
-  "you_formal",
+  "he/she",
   "we",
   "they",
   "you_plural",
@@ -16,5 +16,7 @@
   "work",
   "time",
   "numbers",
-  "shopping"
+  "shopping",
+  "Pretérito Indefinido",
+  "Pretérito Imperfecto"
 ]

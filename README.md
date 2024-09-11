@@ -6,6 +6,8 @@
 - ruby 3.2.0
 - rack-cors
 
+![database-plan](./database.png)
+
 Things you may want to cover:
 
 - Ruby version
