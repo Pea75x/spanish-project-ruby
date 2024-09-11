@@ -2,5 +2,6 @@ class Sentence < ApplicationRecord
   validates :translation, presence: true, length: { maximum: 50 }
   validates :themes, themes: true, allow_blank: true
 
-  has_and_belongs_to_many :words
+  has_many :sentences_words
+  has_many :words, through: :sentences_words
 end
