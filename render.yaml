@@ -2,7 +2,7 @@ services:
   - type: web
     name: spanish-project
     env: ruby
-    buildCommand: bundle install --bundler-version 2.5.18
+    buildCommand: bundle install --bundler-version 2.4.22
     startCommand: bundle exec rails server
     plan: free
     runtime: ruby-3.2
