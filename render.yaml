@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: spanish-project
+    env: ruby
+    buildCommand: bundle install --bundler-version 2.5.18
+    startCommand: bundle exec rails server
+    plan: free
+    runtime: ruby-3.2
+    autoDeploy: true
