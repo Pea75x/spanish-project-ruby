@@ -1,6 +1,6 @@
 json.sentences do
   json.array! word.sentences do |sentence|
-    json.extract! sentence, :id, :sentence, :translation
+    json.partial! "sentences/sentence_short", sentence: sentence
   end
 end
 
