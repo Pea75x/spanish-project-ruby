@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_08_120154) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_13_152003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_scores", force: :cascade do |t|
+    t.integer "game_points"
+    t.integer "user_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_scores_on_game_id"
+    t.index ["user_id"], name: "index_game_scores_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "themes", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sentences", force: :cascade do |t|
     t.string "sentence"
@@ -27,6 +44,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_08_120154) do
     t.bigint "sentence_id", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin"
+    t.integer "total_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "words", force: :cascade do |t|
     t.string "word"
     t.string "translation"
@@ -38,5 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_08_120154) do
     t.index ["verb_id"], name: "index_words_on_verb_id"
   end
 
+  add_foreign_key "game_scores", "games"
+  add_foreign_key "game_scores", "users"
   add_foreign_key "words", "words", column: "verb_id"
 end
