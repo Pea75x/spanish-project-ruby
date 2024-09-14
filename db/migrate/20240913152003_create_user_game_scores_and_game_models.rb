@@ -5,7 +5,6 @@ class CreateUserGameScoresAndGameModels < ActiveRecord::Migration[7.0]
       t.string :username
       t.string :password_digest
       t.boolean :admin
-      t.integer :total_points
       t.timestamps
     end
 

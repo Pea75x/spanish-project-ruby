@@ -1,5 +1,5 @@
 class Word < ApplicationRecord
-  validates :word, presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :word, words: true, uniqueness: true, presence: true
   validates :translation, presence: true, length: { maximum: 50 }
   validates :themes, themes: true, allow_blank: true
   validate :verb_id_validation

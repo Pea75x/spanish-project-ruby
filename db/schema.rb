@@ -49,7 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_13_152003) do
     t.string "username"
     t.string "password_digest"
     t.boolean "admin"
-    t.integer "total_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
