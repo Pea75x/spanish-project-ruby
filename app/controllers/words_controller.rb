@@ -39,7 +39,7 @@ class WordsController < ApplicationController
     if @word.destroy
       render body: nil, status: :no_content
     else
-      render body: { message: @word.errors.messages }, status: :not_found
+      render json: { message: @word.errors.messages }, status: :not_found
     end
   end
 
