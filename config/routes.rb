@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   resources :sentences
   resources :words
+  resources :users
+  resources :games
+  resources :game_scores
+  post "auth/login", to: "auth#login"
 end

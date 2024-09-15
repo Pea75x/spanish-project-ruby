@@ -1,2 +1,25 @@
 class UsersController < ApplicationController
+  protect_from_forgery with: :null_session
+
+  def create
+    user = User.create(user_params)
+
+    if user.save
+      @token  = JWT.encode({ user_id: user.id }, ENV["SECRET_KEY"] )
+
+      render json: {token: @token }, status: 200
+    else
+      render json: { message: user.errors.full_messages}, status: 400
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :username, :password)
+  end
 end

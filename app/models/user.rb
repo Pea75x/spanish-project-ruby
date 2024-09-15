@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   include Emailable
 
-  validates :username, words: true, allow_blank: true, uniqueness: true
+  validates :username, words: true, uniqueness: true
 
   has_many :game_scores, dependent: :destroy
 

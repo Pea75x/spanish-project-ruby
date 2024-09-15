@@ -1,6 +1,6 @@
 class ThemesValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return if value.empty?
+    return if !value.present?
     
     value.map do |theme|
       record.errors.add(attribute, "Must be in list of allowed themes") unless word_types.include?(theme)
