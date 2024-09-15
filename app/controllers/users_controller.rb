@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     if user.save
       @token  = JWT.encode({ user_id: user.id }, ENV["SECRET_KEY"] )
 
-      render json: {token: @token }, status: 200
+      render json: {token: @token }, status: :created
     else
-      render json: { message: user.errors.full_messages}, status: 400
+      render json: { message: user.errors.messages }, status: :bad_request
     end
   end
 

@@ -8,9 +8,9 @@ class AuthController < ApplicationController
     if user.present? && user.authenticate(auth_params[:password])
       @token = JWT.encode({user_id: user.id}, ENV["SECRET_KEY"])
 
-      render json: { message: {token: @token} }, status: 200
+      render json: { message: {token: @token} }, status: :ok
     else
-      render json: { message: "Bad credentials"}, status: 401
+      render json: { message: "Bad credentials" }, status: :unauthorized
     end
   end
 

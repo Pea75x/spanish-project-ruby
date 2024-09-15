@@ -1,6 +1,8 @@
 require "rails_helper"
+require 'support/auth_helper'
 
 describe WordsController, type: :request do
+  let!(:user) { create(:user) }
   let!(:tener) { create(:verb) }
   let!(:tengo) { create(:word) }
   let!(:hacer) { create(:word, word: "hacer")}
@@ -15,7 +17,7 @@ describe WordsController, type: :request do
   let(:request_config) do
     {
       params: params,
-      headers: { "Accept" => "application/json" }
+      headers: { "Accept" => "application/json" }.merge(authenticated_header(user))
     }
   end
 

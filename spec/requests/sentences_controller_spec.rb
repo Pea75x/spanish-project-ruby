@@ -1,11 +1,12 @@
 
 require "rails_helper"
+require 'support/auth_helper'
 
-describe WordsController, type: :request do
+describe SentencesController, type: :request do
   let!(:tienes) { create(:word, word: "tienes", translation: "You have") }
   let!(:sentence1) { create(:sentence, sentence: "Como te sientes hoy?")}
   let!(:sentence2) { create(:sentence, sentence: "Quieres comer algo?")}
-  
+  let!(:user) { create(:user) }
   let(:attributes) { {} }
   let(:params) do
     { 
@@ -16,7 +17,7 @@ describe WordsController, type: :request do
   let(:request_config) do
     {
       params: params,
-      headers: { "Accept" => "application/json" }
+      headers: { "Accept" => "application/json" }.merge(authenticated_header(user))
     }
   end
 
@@ -72,7 +73,7 @@ describe WordsController, type: :request do
     let(:request) { -> { post '/sentences', **request_config } }
 
     context "with valid parameters" do
-      it "creates the word" do
+      it "creates the sentence" do
         expect(@response).to have_http_status(:created)
       end
 

@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     if @game.update(game_params)
       render :show, status: :ok
     else
-      render json: @game.errors, status: :unprocessable_entity
+      render json: { message: @game.errors.messages }, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class GamesController < ApplicationController
     if @game.save
       render :show, status: :created
     else
-      render :bad_request
+      render json: { message: @game.errors.messages }, status: :bad_request
     end
   end
 
@@ -38,6 +38,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    request.params(:game).permit(:name, themes: [])
+    params.require(:game).permit(:name, themes: [])
   end
 end

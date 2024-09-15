@@ -1,6 +1,6 @@
 class WordsValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return if !value.present?
+    return record.errors.add(attribute, "Can't be blank") if !value.present?
 
     record.errors.add(attribute, "Invalid characters") unless valid_characters.match?(value)
     record.errors.add(attribute, "Too long") unless value.length <= 30

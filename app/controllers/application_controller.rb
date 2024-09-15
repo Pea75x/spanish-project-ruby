@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
+  rescue_from ActiveRecord::RecordNotFound, :with => :resource_not_found
 
   def token
     token_data = begin
@@ -20,5 +21,11 @@ class ApplicationController < ActionController::Base
 
   def authorize
     render json: { message: "Please log in"}, status: :unauthorized unless current_user.present?
+  end
+
+  def resource_not_found
+    respond_to do |format|
+      format.json{ render json: 'Record Not Found', status: 404 }
+    end
   end
 end

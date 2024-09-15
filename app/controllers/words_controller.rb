@@ -21,7 +21,7 @@ class WordsController < ApplicationController
     if @word.update(word_params)
       render :show, status: :ok
     else
-      render json: @word.errors, status: :unprocessable_entity
+      render json: { message: @word.errors.messages }, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class WordsController < ApplicationController
     if @word.save
       render :show, status: :created
     else
-      render :bad_request
+      render json: { message: @word.errors.messages }, status: :bad_request
     end
   end
 
@@ -39,7 +39,7 @@ class WordsController < ApplicationController
     if @word.destroy
       render body: nil, status: :no_content
     else
-      render body: @word.errors.full_messages.to_sentence, status: :not_found
+      render body: { message: @word.errors.messages }, status: :not_found
     end
   end
 
