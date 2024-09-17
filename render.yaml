@@ -1,9 +1,22 @@
+databases:
+  - name: spanish-project
+    databaseName: spanish-project
+    user: spanish-project
+    plan: free
+
 services:
   - type: web
     name: spanish-project
-    env: ruby
-    buildCommand: bundle install --bundler-version 2.4.22
-    startCommand: bundle exec rails server
+    runtime: ruby
     plan: free
-    runtime: ruby-3.2
-    autoDeploy: true
+    buildCommand: './bin/render-build.sh'
+    startCommand: 'bundle exec rails server'
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: spanish-project
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default
