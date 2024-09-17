@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     if @game.update(game_params)
       render :show, status: :ok
     else
-      render json: { message: @game.errors.messages }, status: :unprocessable_entity
+      render json: @game.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class GamesController < ApplicationController
     if @game.save
       render :show, status: :created
     else
-      render json: { message: @game.errors.messages }, status: :bad_request
+      render json: @game.errors.full_messages.to_sentence, status: :bad_request
     end
   end
 

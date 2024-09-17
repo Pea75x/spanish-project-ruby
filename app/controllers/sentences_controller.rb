@@ -21,7 +21,7 @@ class SentencesController < ApplicationController
     if @sentence.update(sentence_params)
       render :show, status: :ok
     else
-      render json: { message: @sentence.errors.messages }, status: :unprocessable_entity
+      render json: @sentence.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class SentencesController < ApplicationController
     if @sentence.save
       render :show, status: :created
     else
-      render json: { message: @sentence.errors.messages }, status: :bad_request
+      render json: @sentence.errors.full_messages.to_sentence, status: :bad_request
     end
   end
 
@@ -39,7 +39,7 @@ class SentencesController < ApplicationController
     if @sentence.destroy
       render body: nil, status: :no_content
     else
-      render json: { message: @sentence.errors.messages }, status: :not_found
+      render json: @sentence.errors.full_messages.to_sentence, status: :not_found
     end
   end
 

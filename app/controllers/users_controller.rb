@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
       render json: {token: @token }, status: :created
     else
-      render json: { message: user.errors.messages }, status: :bad_request
+      render json: user.errors.full_messages.to_sentence, status: :bad_request
     end
   end
 
