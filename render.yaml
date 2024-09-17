@@ -1,12 +1,12 @@
 databases:
-  - name: spanish-project
-    databaseName: spanish-project
-    user: spanish-project
+  - name: spanish_project_ruby
+    databaseName: spanish_project_ruby
+    user: spanish_project_ruby_user
     plan: free
 
 services:
   - type: web
-    name: spanish-project
+    name: spanish_project_ruby
     runtime: ruby
     plan: free
     buildCommand: './bin/render-build.sh'
@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: spanish-project
+          name: spanish_project_ruby
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
