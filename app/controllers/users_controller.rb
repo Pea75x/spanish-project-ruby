@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session
+  skip_before_action :authorize, only: [:create]
 
   def create
     user = User.create(user_params)
