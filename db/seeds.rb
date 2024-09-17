@@ -19,12 +19,21 @@ hambre = Word.create(word: "hambre", translation: "hunger", themes: ["food"])
 que = Word.create(word: "que", translation: "what")
 a_menudo = Word.create(word: "a menudo", translation: "often")
 cuando = Word.create(word: "cuando", translation: "when")
-era = Word.create(word: "era", translation: "was", themes: ["past_tense"])
+era = Word.create(word: "era", translation: "was", themes: ["pretérito_imperfecto"])
 nina = Word.create(word: "niña", translation: "little girl")
 
 
 sentence1 = Sentence.create(sentence: "Tengo hambre", translation: "I am hungry", word_ids: [tengo.id, hambre.id])
-sentence2 = Sentence.create(sentence: "Que Hiciste", translation: "What did you do", word_ids: [que.id, hiciste.id], themes: ["Pretérito Indefinido", "activities"])
-sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", translation: "I skied often when I was a child", word_ids: [esquiaba.id, a_menudo.id, cuando.id, era.id, nina.id], themes: ["Pretérito Imperfecto", "activities"])
+sentence2 = Sentence.create(sentence: "Que Hiciste", translation: "What did you do", word_ids: [que.id, hiciste.id], themes: ["pretérito_indefinido", "activities"])
+sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", translation: "I skied often when I was a child", word_ids: [esquiaba.id, a_menudo.id, cuando.id, era.id, nina.id], themes: ["pretérito_imperfecto", "activities"])
+
+admin_user = User.create(username: "admin1", email: "admin@email.com", password: "qweqweqwe", admin: true)
+agent_user = User.create(username: "user1", email: "user@email.com", password: "qweqweqwe")
+
+game1 = Game.create(name: "Pretérito Indefinido vs Pretérito Imperfecto", themes: ["pretérito_indefinido", "pretérito_imperfecto"])
+game2 = Game.create(name: "Presente, Pasado/Pretérito o Futuro", themes: ["pretérito_indefinido", "pretérito_imperfecto"])
+
+game_score1 = GameScore.create(user: agent_user, game: game1, game_points: 78)
+game_score2 = GameScore.create(user: admin_user, game: game1, game_points: 93)
 
 pp "created words and sentences!"

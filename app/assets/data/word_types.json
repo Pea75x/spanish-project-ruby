@@ -1,7 +1,6 @@
 [
-  "past_tense",
-  "present_tense",
-  "future_tense",
+  "presente",
+  "futuro",
   "me",
   "you",
   "he/she",
@@ -17,6 +16,6 @@
   "time",
   "numbers",
   "shopping",
-  "Pretérito Indefinido",
-  "Pretérito Imperfecto"
+  "pretérito_indefinido",
+  "pretérito_imperfecto"
 ]
