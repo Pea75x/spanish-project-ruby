@@ -6,7 +6,7 @@ class AuthController < ApplicationController
     user = User.where(username: auth_params[:username]).first
 
     if user.present? && user.authenticate(auth_params[:password])
-      @token = JWT.encode({user_id: user.id}, ENV["SECRET_KEY"])
+      @token = JWT.encode({user_id: user.id, admin: user.admin }, ENV["SECRET_KEY"])
 
       render json: { token: @token }, status: :ok
     else

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
 
     if user.save
-      @token  = JWT.encode({ user_id: user.id }, ENV["SECRET_KEY"] )
+      @token  = JWT.encode({ user_id: user.id, admin: user.admin }, ENV["SECRET_KEY"] )
 
       render json: {token: @token }, status: :created
     else
