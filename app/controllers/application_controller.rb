@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    render json: { message: "Please log in"}, status: :unauthorized unless current_user.present?
+    render json: "Please log in", status: :unauthorized unless current_user.present?
   end
 
   def resource_not_found

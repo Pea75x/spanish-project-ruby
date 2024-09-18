@@ -7,6 +7,6 @@ class WordsValidator < ActiveModel::EachValidator
   end
 
   def valid_characters
-    /^[a-zA-Z0-9\.'\- _]+$/i
+    /^[a-zA-Z0-9\.áéíóúüñ¿¡'\- _]+$/i
   end
 end
