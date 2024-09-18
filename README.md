@@ -1,10 +1,14 @@
 # Spanish Project backend
 
+Deployed with render - https://spanish-project-ruby.onrender.com
+
 ### Technologies used
 
-- Rails 7.0.8.4
-- ruby 3.2.0
+- Rails 7.0.8
+- ruby 3.2.2
 - rack-cors
+- rspec-rails
+- factory_bot
 
 ![database-plan](./database.png)
 

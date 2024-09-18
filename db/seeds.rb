@@ -23,9 +23,20 @@ era = Word.create(word: "era", translation: "was", themes: ["pretérito_imperfec
 nina = Word.create(word: "niña", translation: "little girl")
 
 
-sentence1 = Sentence.create(sentence: "Tengo hambre", translation: "I am hungry", word_ids: [tengo.id, hambre.id])
-sentence2 = Sentence.create(sentence: "Que Hiciste", translation: "What did you do", word_ids: [que.id, hiciste.id], themes: ["pretérito_indefinido", "activities"])
-sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", translation: "I skied often when I was a child", word_ids: [esquiaba.id, a_menudo.id, cuando.id, era.id, nina.id], themes: ["pretérito_imperfecto", "activities"])
+sentence1 = Sentence.create(sentence: "Tengo hambre", translation: "I am hungry", themes: ["food", "presente"])
+sentence2 = Sentence.create(sentence: "Que Hiciste", translation: "What did you do", themes: ["pretérito_indefinido", "activities"])
+sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", translation: "I skied often when I was a child", themes: ["pretérito_imperfecto", "activities"])
+
+def add_relationship(sentence, words)
+  words.each_with_index do |word_id, index|
+    sentence.sentences_words.create(word_id: word_id, order: index + 1)
+    pp sentence.words[index]
+  end
+end
+
+add_relationship(sentence1, [tengo.id, hambre.id])
+add_relationship(sentence2, [que.id, hiciste.id])
+add_relationship(sentence3, [esquiaba.id, a_menudo.id, cuando.id, era.id, nina.id])
 
 admin_user = User.create(username: "admin1", email: "admin@email.com", password: "qweqweqwe", admin: true)
 agent_user = User.create(username: "user1", email: "user@email.com", password: "qweqweqwe")

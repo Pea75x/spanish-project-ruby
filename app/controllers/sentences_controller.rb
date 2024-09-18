@@ -29,6 +29,10 @@ class SentencesController < ApplicationController
     @sentence = Sentence.new(sentence_params)
 
     if @sentence.save
+      params[:sentence][:word_ids].each_with_index do |word_id, index|
+        sentence.sentences_words.create(word_id: word_id, order: index + 1)
+      end
+
       render :show, status: :created
     else
       render json: @sentence.errors.full_messages.to_sentence, status: :bad_request
@@ -50,6 +54,6 @@ class SentencesController < ApplicationController
   end
 
   def sentence_params
-    params.require(:sentence).permit(:sentence, :translation, word_ids: [], themes: [])
+    params.require(:sentence).permit(:sentence, :translation, themes: [])
   end
 end
