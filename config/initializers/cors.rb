@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:3001", "https://spanish-project.netlify.app/"
+    origins "http://localhost:3001", "https://spanish-project.netlify.app"
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
@@ -8,3 +8,4 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       max_age: 86400
   end
 end
+
