@@ -24,7 +24,6 @@ describe GamesController, type: :request do
 
   before do
     request.call
-    allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
   end
 
   describe '#index' do
