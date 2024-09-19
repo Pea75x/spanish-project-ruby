@@ -25,7 +25,12 @@ jobs:
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3
 
-      - name: Setup database
+      - name: Print DATABASE_URL
+        run: echo $DATABASE_URL
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Set up database
         env:
           RAILS_ENV: test
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
