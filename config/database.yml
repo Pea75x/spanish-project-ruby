@@ -61,8 +61,8 @@ test:
   adapter: postgresql
   host: localhost
   encoding: unicode
-  username: <%= ENV[“POSTGRES_USER”] %>
-  password: <%= ENV[“POSTGRES_PASSWORD”] %>
+  DATABASE_URL: <%= ENV[“DATABASE_URL”] %>
+  RAILS_MASTER_KEY: <%= ENV[“RAILS_MASTER_KEY”] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
