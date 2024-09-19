@@ -1,18 +1,18 @@
-name: Run RSpec tests
-on: [push]
+name: CI RSpec tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:14.6
-        ports:
-          - 5432:5432
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - name: checkout
       - uses: actions/checkout@v3
 
       - name: Set up Ruby
@@ -22,12 +22,17 @@ jobs:
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
-      - name: setup database
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Setup database
         env:
           RAILS_ENV: test
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: bundle exec rake db:setup
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
 
       - name: Run tests
         run: bundle exec rspec
