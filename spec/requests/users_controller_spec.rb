@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'support/auth_helper'
 
 describe UsersController, type: :request do
-  let(:user) { nil }
+  let(:user) { create(:user) }
   let(:attributes) do
     {
       email: "email@email.com",
@@ -31,53 +31,35 @@ describe UsersController, type: :request do
   describe "#create" do
     let(:request) { -> { post '/users', **request_config } }
 
-    context "with the correct auth token" do
-      let!(:user) { create(:user) }
-
-      context "with valid attributes" do
-        it "creates the user" do
-          expect(@response).to have_http_status(:created)
-        end
-
-        it "returns the token" do
-          expect(@response.parsed_body.keys).to eq(["token"])
-        end
+    context "with valid attributes" do
+      it "creates the user" do
+        expect(@response).to have_http_status(:created)
       end
 
-      context "with invalid attributes" do
-        let(:attributes) do
-          {
-            email: "email",
-            password: "password123"
-          }
-        end
-
-        it "returns the correct status" do
-          expect(@response).to have_http_status(:bad_request)
-        end
-
-        it "returns the correct errors" do
-          expect(@response.parsed_body["message"]).to eq({
-            "email" => ["is invalid"],
-            "username" => ["Can't be blank"]
-            })
-        end
+      it "returns the token" do
+        expect(@response.parsed_body.keys).to eq(["token"])
       end
     end
 
-    context "with the incorrect auth token" do
+    context "with invalid attributes" do
+      let(:attributes) do
+        {
+          email: "email",
+          password: "password123"
+        }
+      end
+
       it "returns the correct status" do
-        expect(@response).to have_http_status(:unauthorized)
+        expect(@response).to have_http_status(:bad_request)
       end
 
       it "returns the correct errors" do
-        expect(@response.parsed_body["message"]).to eq("Please log in")
+        expect(@response.body).to eq("Email is invalid and Username can't be blank")
       end
     end
   end
 
   describe "#show" do
-    let(:user) { create(:user) }
     let(:request) { -> { get "/users/#{user.id}", **request_config } }
 
     it "presents the data correctly" do

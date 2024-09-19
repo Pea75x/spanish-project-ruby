@@ -43,7 +43,7 @@ describe AuthController, type: :request do
       end
 
       it "returns the token" do
-        expect(@response.parsed_body["message"].keys).to eq(["token"])
+        expect(@response.parsed_body.keys).to eq(["token"])
       end
     end
 
@@ -57,7 +57,7 @@ describe AuthController, type: :request do
       end
 
       it "returns the token" do
-        expect(@response.parsed_body["message"]).to eq("Bad credentials")
+        expect(@response.body).to eq("Bad credentials")
       end
     end
   end

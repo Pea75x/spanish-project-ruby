@@ -29,7 +29,7 @@ sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", tran
 
 def add_relationship(sentence, words)
   words.each_with_index do |word_id, index|
-    sentence.sentences_words.create(word_id: word_id, order: index + 1)
+    SentencesWord.create(sentence_id: sentence.id, word_id: word_id, order: index + 1)
     pp sentence.words[index]
   end
 end

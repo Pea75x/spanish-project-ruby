@@ -29,8 +29,12 @@ class SentencesController < ApplicationController
     @sentence = Sentence.new(sentence_params)
 
     if @sentence.save
-      params[:sentence][:word_ids].each_with_index do |word_id, index|
-        sentence.sentences_words.create(word_id: word_id, order: index + 1)
+      word_ids = params[:sentence][:word_ids]
+
+      if word_ids
+        word_ids.each_with_index do |word_id, index|
+          SentencesWord.create(sentence_id: @sentence.id, word_id: word_id, order: index + 1)
+        end
       end
 
       render :show, status: :created

@@ -6,11 +6,11 @@ describe "#create" do
 
   context "#validation" do
     it "is not valid without a name" do
-      expect(Game.create(themes: ["past_tense"])).to_not be_valid
+      expect(Game.create(themes: ["futuro"])).to_not be_valid
     end
 
     it "is valid with a theme included in themes" do
-      game.themes << "past_tense"
+      game.themes << "futuro"
       expect(game).to be_valid
     end
 

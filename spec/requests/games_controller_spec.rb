@@ -76,7 +76,7 @@ describe GamesController, type: :request do
       let(:attributes) do
         {
           name: "game name",
-          themes: ["present_tense"],
+          themes: ["presente"],
         }
       end
       let(:request) { -> { post "/games", **request_config } }

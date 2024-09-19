@@ -6,7 +6,7 @@ describe SentencesController, type: :request do
   let!(:tienes) { create(:word, word: "tienes", translation: "You have") }
   let!(:sentence1) { create(:sentence, sentence: "Como te sientes hoy?")}
   let!(:sentence2) { create(:sentence, sentence: "Quieres comer algo?")}
-  let!(:user) { create(:user) }
+  let!(:user) { nil }
   let(:attributes) { {} }
   let(:params) do
     { 
@@ -28,32 +28,47 @@ describe SentencesController, type: :request do
   describe '#index' do
     let(:request) { -> { get '/sentences', **request_config } }
 
-    it "returns the all items" do
-      expect(@response.parsed_body["total"]).to eq(2)
-    end
+    context "with the correct auth token" do
+      let!(:user) { create(:user) }
 
-    it "presents the data correctly" do
-      data_attributes = @response.parsed_body["data"][0].keys
-
-      expect(data_attributes).to eq(["words", "id", "sentence", "translation", "themes",])
-      
-      expect(data_attributes).to_not include(["created_at", "updated_at"])
-    end
-
-    context "using the search" do
-      let(:params) do
-        { 
-          sentences: "como"
-        }
+      it "returns the all items" do
+        expect(@response.parsed_body["total"]).to eq(2)
       end
-  
-      it "returns the correct items" do
-        expect(@response.parsed_body["total"]).to eq(1)
+
+      it "presents the data correctly" do
+        data_attributes = @response.parsed_body["data"][0].keys
+
+        expect(data_attributes).to eq(["words", "id", "sentence", "translation", "themes",])
+        
+        expect(data_attributes).to_not include(["created_at", "updated_at"])
+      end
+
+      context "using the search" do
+        let(:params) do
+          { 
+            sentences: "como"
+          }
+        end
+    
+        it "returns the correct items" do
+          expect(@response.parsed_body["total"]).to eq(1)
+        end
+      end
+    end
+
+    context "with the incorrect auth token" do
+      it "returns the correct status" do
+        expect(@response).to have_http_status(:unauthorized)
+      end
+
+      it "returns the correct errors" do
+        expect(@response.body).to eq("Please log in")
       end
     end
   end
 
   describe '#show' do
+    let!(:user) { create(:user) }
     let(:request) { -> { get "/sentences/#{sentence1.id}", **request_config } }
 
     it "presents the data correctly" do
@@ -62,11 +77,13 @@ describe SentencesController, type: :request do
   end
 
   describe '#create' do
+    let!(:user) { create(:user) }
+
     let(:attributes) do
       {
         sentence: "Tienes razon",
         translation: "You're right",
-        themes: ["present_tense"],
+        themes: ["presente"],
         word_ids: [ tienes.id ]
       }
     end
@@ -86,7 +103,7 @@ describe SentencesController, type: :request do
           "id" => be_present,
           "sentence" => "Tienes razon",
           "translation" => "You're right",
-          "themes" => ["present_tense"],
+          "themes" => ["presente"],
           "words" => [{
             "id" => be_present,
             "translation" => "You have",
