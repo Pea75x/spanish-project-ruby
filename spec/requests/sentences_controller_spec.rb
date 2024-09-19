@@ -31,6 +31,10 @@ describe SentencesController, type: :request do
     context "with the correct auth token" do
       let!(:user) { create(:user) }
 
+      before do
+        allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+      end
+
       it "returns the all items" do
         expect(@response.parsed_body["total"]).to eq(2)
       end
@@ -71,6 +75,10 @@ describe SentencesController, type: :request do
     let!(:user) { create(:user) }
     let(:request) { -> { get "/sentences/#{sentence1.id}", **request_config } }
 
+    before do
+      allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+    end
+
     it "presents the data correctly" do
       expect(@response.parsed_body.keys).to eq(["words", "id", "sentence", "translation", "themes"])
     end
@@ -88,6 +96,10 @@ describe SentencesController, type: :request do
       }
     end
     let(:request) { -> { post '/sentences', **request_config } }
+
+    before do
+      allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+    end
 
     context "with valid parameters" do
       it "creates the sentence" do

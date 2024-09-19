@@ -32,6 +32,10 @@ describe WordsController, type: :request do
     context "with the correct auth token" do
       let!(:user) { create(:user) }
 
+      before do
+        allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+      end
+
       it "returns the all items" do
         expect(@response.parsed_body["total"]).to eq(3)
       end
@@ -71,6 +75,9 @@ describe WordsController, type: :request do
   describe '#show' do
     let!(:user) { create(:user) }
     let(:request) { -> { get "/words/#{tener.id}", **request_config } }
+    before do
+      allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+    end
 
     it "presents the data correctly" do
       expect(@response.parsed_body.keys).to eq(["sentences", "verb", "id", "word", "translation", "themes"])
@@ -80,6 +87,10 @@ describe WordsController, type: :request do
   describe '#create' do
     let!(:user) { create(:user) }
     let(:request) { -> { post '/words', **request_config } }
+
+    before do
+      allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
+    end
 
     context "with valid parameters" do
       let!(:attributes) do

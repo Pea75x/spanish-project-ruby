@@ -24,6 +24,7 @@ describe GamesController, type: :request do
 
   before do
     request.call
+    allow(JWT).to receive(:decode).and_return([{ 'user_id' => user.id }])
   end
 
   describe '#index' do
@@ -41,7 +42,6 @@ describe GamesController, type: :request do
   end
 
   describe '#show' do
-
     context "with correct game ID" do
       let(:request) { -> { get "/games/#{game1.id}", **request_config } }
 
