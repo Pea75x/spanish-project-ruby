@@ -48,5 +48,8 @@ jobs:
           bin/rails db:create
           bin/rails db:migrate
 
+      - name: Set up environment variables
+        run: echo "SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}" >> $GITHUB_ENV
+
       - name: Run tests
         run: bundle exec rspec
