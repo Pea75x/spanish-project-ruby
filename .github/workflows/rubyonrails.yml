@@ -40,6 +40,7 @@ jobs:
       - name: Run rake
         run: bin/rake
       - name: Run tests
+        run: bundle install
         run: bundle exec rspec -f d spec/controllers spec/requests
       
 
