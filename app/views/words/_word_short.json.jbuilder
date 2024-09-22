@@ -1,1 +1,1 @@
-json.extract! word, :id, :word, :translation
+json.extract! word, :id, :word, :translation, :themes

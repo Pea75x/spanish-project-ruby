@@ -8,12 +8,12 @@
 
 tener = Word.create(word: "tener", translation: "To have", type_verb: true)
 hacer = Word.create(word: "hacer", translation: "To make", type_verb: true)
-esquiar = Word.create(word: "esquiar", translation: "To ski", type_verb: true)
+esquiar = Word.create(word: "esquiar", translation: "To ski", type_verb: true, themes: ["activities"])
 
 tengo = Word.create(word: "tengo", translation: "I have", verb: tener)
 tenemos = Word.create(word: "tenemos", translation: "We have", verb: tener)
 hiciste = Word.create(word: "hiciste", translation: "You made", verb: hacer)
-esquiaba = Word.create(word: "esquiaba", translation: "Skied", verb: esquiar)
+esquiaba = Word.create(word: "esquiaba", translation: "Skied", verb: esquiar, themes: ["activities"])
 
 hambre = Word.create(word: "hambre", translation: "hunger", themes: ["food"])
 que = Word.create(word: "que", translation: "what")
