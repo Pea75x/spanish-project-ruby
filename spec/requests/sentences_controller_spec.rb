@@ -107,6 +107,7 @@ describe SentencesController, type: :request do
           "words" => [{
             "id" => be_present,
             "translation" => "You have",
+            "themes" => [],
             "word" => "tienes"
           }]
         )
