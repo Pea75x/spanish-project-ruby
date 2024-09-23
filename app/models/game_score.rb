@@ -2,6 +2,8 @@ class GameScore < ApplicationRecord
   belongs_to :game
   belongs_to :user
   validates :game_points, presence: true
+  validates :game_id, presence: true
+  validates :user_id, presence: true
 
   def game_name
     game.name
