@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_18_175204) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_24_120108) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_175204) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "verb_tenses", force: :cascade do |t|
+    t.string "name"
+    t.integer "verb_id"
+    t.integer "yo_id"
+    t.integer "tu_id"
+    t.integer "el_id"
+    t.integer "nosotros_id"
+    t.integer "ellos_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "words", force: :cascade do |t|
     t.string "word"
     t.string "translation"
@@ -61,11 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_175204) do
     t.string "themes", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "verb_id"
-    t.index ["verb_id"], name: "index_words_on_verb_id"
   end
 
   add_foreign_key "game_scores", "games"
   add_foreign_key "game_scores", "users"
-  add_foreign_key "words", "words", column: "verb_id"
 end

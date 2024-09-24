@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :users
   resources :games
   resources :game_scores
+  resources :verb_tenses
   post "auth/login", to: "auth#login"
 end
