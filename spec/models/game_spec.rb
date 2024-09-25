@@ -10,7 +10,7 @@ describe "#create" do
     end
 
     it "is valid with a theme included in themes" do
-      game.themes << "futuro"
+      game.themes << "futuro_simple"
       expect(game).to be_valid
     end
 

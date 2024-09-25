@@ -11,7 +11,7 @@ describe "#create" do
     end
 
     it "is valid with a theme included in themes" do
-      test_sentence.themes << "futuro"
+      test_sentence.themes << "futuro_simple"
       expect(test_sentence).to be_valid
     end
 

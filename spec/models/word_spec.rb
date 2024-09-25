@@ -11,7 +11,7 @@ describe "#create" do
     end
 
     it "is valid with a theme included in themes" do
-      test_word.themes << "futuro"
+      test_word.themes << "futuro_simple"
       expect(test_word).to be_valid
     end
 

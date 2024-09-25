@@ -71,7 +71,7 @@ describe WordsController, type: :request do
     let(:request) { -> { get "/words/#{tener.id}", **request_config } }
 
     it "presents the data correctly" do
-      expect(@response.parsed_body.keys).to eq(["sentences", "verb", "id", "word", "translation", "themes"])
+      expect(@response.parsed_body.keys).to eq(["sentences", "verb", "id", "word", "translation", "themes", "type_verb"])
     end
   end
 
@@ -107,7 +107,8 @@ describe WordsController, type: :request do
           "verb" => {
             "word" => "tener",
             "translation" => "To have"
-          }
+          },
+          "type_verb" => false
         )
       end
     end
