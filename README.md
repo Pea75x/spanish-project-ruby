@@ -10,6 +10,9 @@ Deployed with render - https://spanish-project-ruby.onrender.com
 - rspec-rails
 - factory_bot
 - Continuous Integration (CI)
+- Redis
+- Sidekiq
+- Rack Attack
 
 ![database-plan](./database.png)
 
