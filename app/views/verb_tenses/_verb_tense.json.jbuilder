@@ -1,3 +1,12 @@
+if verb_tense.participle_id.nil?
+  json.participle nil
+else
+  json.participle do
+    json.extract! verb_tense.participle, :id, :word, :translation
+  end
+end
+
+
 json.verb do
   json.extract! verb_tense.verb, :id, :word, :translation
 end
@@ -22,4 +31,4 @@ json.ellos do
   json.extract! verb_tense.ellos, :id, :word, :translation
 end
 
-json.extract! verb_tense, :id, :name
+json.extract! verb_tense, :id, :name, :themes, :sentences

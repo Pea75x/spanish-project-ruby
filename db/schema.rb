@@ -62,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_24_120108) do
     t.integer "el_id"
     t.integer "nosotros_id"
     t.integer "ellos_id"
+    t.integer "participle_id"
+    t.string "themes", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,8 +75,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_24_120108) do
     t.string "themes", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "verb_id"
+    t.index ["verb_id"], name: "index_words_on_verb_id"
   end
 
   add_foreign_key "game_scores", "games"
   add_foreign_key "game_scores", "users"
+  add_foreign_key "words", "words", column: "verb_id"
 end

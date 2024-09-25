@@ -8,10 +8,9 @@ class CreateVerbTenses < ActiveRecord::Migration[7.0]
       t.integer :el_id
       t.integer :nosotros_id
       t.integer :ellos_id
+      t.integer :participle_id
+      t.string :themes, array: true, default: []
       t.timestamps
     end
-
-    remove_foreign_key :words, :words, column: :verb_id
-    remove_column :words, :verb_id, :integer
   end
 end

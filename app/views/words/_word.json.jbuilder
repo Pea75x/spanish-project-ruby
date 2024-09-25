@@ -4,4 +4,12 @@ json.sentences do
   end
 end
 
-json.extract! word, :id, :word, :translation, :themes
+if word.verb.nil?
+  json.verb nil
+else
+  json.verb do
+    json.extract! word.verb, :word, :translation
+  end
+end
+
+json.extract! word, :id, :word, :translation, :themes, :type_verb

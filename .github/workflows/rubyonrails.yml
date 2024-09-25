@@ -54,15 +54,22 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
-  deploy:
-    name: Deploy
-    needs: [test]
-    runs-on: ubuntu-latest
+  # deploy:
+  #   name: Deploy
+  #   needs: [test]
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          wait-for-success: true
+  #   steps:
+  #     - name: Deploy to production
+  #       uses: johnbeynon/render-deploy-action@v0.0.8
+  #       with:
+  #         service-id: ${{ secrets.RENDER_SERVICE_ID }}
+  #         api-key: ${{ secrets.RENDER_API_KEY }}
+  #         wait-for-success: true
+
+  #     - name: Drop, create, migrate and seed database
+  #       run: |
+  #         bin/rails db:drop RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+  #         bin/rails db:create RAILS_ENV=production
+  #         bin/rails db:migrate RAILS_ENV=production
+  #         bin/rails db:seed RAILS_ENV=production
