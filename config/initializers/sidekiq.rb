@@ -1,6 +1,6 @@
 schedule_file = Rails.root.join("config/schedule.yml")
 
-if schedule_file.readable?
+if schedule_file.exist? && Sidekiq.server?
   Rails.application.config.after_initialize do
     Sidekiq::Cron::Job.load_from_hash!(YAML.load(schedule_file.read))
   end
