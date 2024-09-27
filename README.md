@@ -12,7 +12,6 @@ Deployed with render - https://spanish-project-ruby.onrender.com
 - Continuous Integration (CI)
 - Redis
 - Sidekiq
-- Rack Attack
 
 ![database-plan](./database.png)
 

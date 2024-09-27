@@ -12,6 +12,6 @@ class NotificationMailer < ApplicationMailer
 
     Rails.logger.info "Sending email to: #{@user&.username}, Game: #{@game&.name}"
 
-    mail(to: "priya_93_x@hotmail.co.uk", subject: "Spanish Project - You are this weeks high Scorer")
+    mail(to: @user.email, subject: "Spanish Project - You are this weeks high Scorer")
   end
 end
