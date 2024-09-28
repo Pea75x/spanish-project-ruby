@@ -8,6 +8,7 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 gem "rack-cors"
 gem "jwt"
 gem 'dotenv-rails'
+gem "rack-attack"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
