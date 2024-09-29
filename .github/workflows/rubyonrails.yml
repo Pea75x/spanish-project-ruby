@@ -79,10 +79,3 @@ jobs:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
           wait-for-success: true
-
-      - name: Drop, create, migrate and seed database
-        run: |
-          bundle exec bin/rails db:drop RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-          bundle exec bin/rails db:create RAILS_ENV=production
-          bundle exec bin/rails db:migrate RAILS_ENV=production
-          bundle exec bin/rails db:seed RAILS_ENV=production
