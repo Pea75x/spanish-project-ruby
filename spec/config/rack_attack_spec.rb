@@ -18,8 +18,8 @@ describe Rack::Attack, type: :request do
   context "throttle IP" do
     let(:request) { -> { get "/words", headers: { "Accept" => "application/json" }.merge(authenticated_header(user)) } }
 
-    it "blocks the requests after 5 times and returns successful after the trottle period" do
-      5.times do
+    it "blocks the requests after 300 times and returns successful after the trottle period" do
+      300.times do
         request.call
 
         expect(response).to have_http_status(:ok)
