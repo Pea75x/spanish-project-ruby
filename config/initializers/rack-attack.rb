@@ -2,7 +2,7 @@ class Rack::Attack
   if ENV["ENABLE_RACK_ATTACK"] == 'true'
 
     Rack::Attack.blocklist("blocks unknown routes") do |req|
-      Rack::Attack::Fail2Ban.filter("banlist:#{req.ip}", maxretry: 3, findtime: 10.minutes, bantime: 2.minutes) do
+      Rack::Attack::Fail2Ban.filter("banlist:#{req.ip}", maxretry: 5, findtime: 10.minutes, bantime: 2.hours) do
         if !(Rails.application.routes.recognize_path(req.path, method: req.request_method) rescue false)
           Rails.logger.info "[Rack::Attack] Blocking request from: #{req.ip} for unknown route: #{req.path}"
           true
@@ -11,7 +11,7 @@ class Rack::Attack
     end
 
     ### Throttle Spammy Clients ###
-    throttle('req/ip', limit: 5, period: 5.minutes) do |req|
+    throttle('req/ip', limit: 300, period: 5.minutes) do |req|
       # Only log when the request is actually throttled
       Rails.logger.info "[Rack::Attack] Request from: #{req.ip}, route: #{req.path}"
       req.ip 

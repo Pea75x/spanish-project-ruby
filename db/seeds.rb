@@ -4,12 +4,16 @@ hacer = Word.create(word: "hacer", translation: "To make", type_verb: true)
 esquiar = Word.create(word: "esquiar", translation: "To ski", type_verb: true, themes: ["activities"])
 trabajar = Word.create(word: "trabajar", translation: "To work", type_verb: true, themes: ["work"])
 haber = Word.create(word: "haber", translation: "To have", type_verb: true)
+esperar = Word.create(word: "esperar", translation: "To wait", type_verb: true)
 
 yo = Word.create(word: "yo", translation: "I", verb: tener, themes: ["me"])
 tu = Word.create(word: "tú", translation: "You", verb: tener, themes: ["you"])
-el = Word.create(word: "él/ella", translation: "He/she", verb: tener, themes: ["he/she"])
+el = Word.create(word: "él", translation: "He/she", verb: tener, themes: ["he/she"])
+ella = Word.create(word: "ella", translation: "He/she", verb: tener, themes: ["he/she"])
 nosotros = Word.create(word: "nosotros/as", translation: "we", verb: tener, themes: ["we"])
 ellos = Word.create(word: "ellos/ellas", translation: "They", verb: tener, themes: ["they"])
+the_la = Word.create(word: "la", translation: "the")
+the_el = Word.create(word: "el", translation: "the")
 
 tengo = Word.create(word: "tengo", translation: "I have", verb: tener, themes: ["me", "presente"])
 tienes = Word.create(word: "tienes", translation: "You have", verb: tener, themes: ["you", "presente"])
@@ -56,9 +60,17 @@ a_menudo = Word.create(word: "a menudo", translation: "often")
 cuando = Word.create(word: "cuando", translation: "when")
 era = Word.create(word: "era", translation: "was", themes: ["preterito_imperfecto"])
 nina = Word.create(word: "niña", translation: "little girl")
-ojala = Word.create(word: "ojalá", translation: "I wish", themes: ["me"])
+ojala = Word.create(word: "ojalá", translation: "I wish")
 no = Word.create(word: "no", translation: "no")
 tanto = Word.create(word: "tanto", translation: "so much")
+culpa = Word.create(word: "culpa", translation: "fault")
+cita = Word.create(word: "cita", translation: "date/appointment", themes: ["doctors", "flirting", "activities"])
+con = Word.create(word: "con", translation: "with")
+medico = Word.create(word: "médico", translation: "doctor", themes: ["doctors"])
+cinco = Word.create(word: "cinco", translation: "5", themes: ["numbers", "time"])
+semanas = Word.create(word: "semanas", translation: "weeks", themes: ["time"])
+para = Word.create(word: "para", translation: "for")
+hacerlo = Word.create(word: "hacerlo", translation: "to make it")
 
 # Verb tenses
 presente = VerbTense.create(name: "presente", verb: tener, yo: tengo, tu: tienes, el: tiene, nosotros: tenemos, ellos: tienen, themes: ["presente"])
@@ -73,11 +85,18 @@ sentence1 = Sentence.create(sentence: "Tengo hambre", translation: "I am hungry"
 sentence2 = Sentence.create(sentence: "Que Hiciste", translation: "What did you do", themes: ["preterito_indefinido", "activities"])
 sentence3 = Sentence.create(sentence: "Esquiaba a menudo cuando era niña", translation: "I skied often when I was a child", themes: ["preterito_imperfecto", "activities"])
 sentence4 = Sentence.create(sentence: "Ojalá no tuviera tanto trabajo", translation: "I wish I didn't have so much work", themes: ["me", "preterito_imperfecto", "subjuntivo", "work"])
+sentence5 = Sentence.create(sentence: "No tuve la culpa", translation: "It wasnt my fault", themes: ["me", "preterito_indefinido"])
+sentence6 = Sentence.create(sentence: "Ella tenía cita con el médico", translation: "She had an appointment with the doctor", themes: ["preterito_imperfecto", "he/she", "indicativo"])
+sentence7 = Sentence.create(sentence: "Han tenido cinco semanas para hacerlo", translation: "They have had 5 weeks to do it", themes: ["they", "preterito_perfecto_compuesto"])
+sentence8 = Sentence.create(sentence: "Tendremos que esperar", translation: "We will have to wait", themes: ["we", "futuro_simple"])
 
 # Word/sentence relationship
 def add_relationship(sentence, words)
+  pp "words", words
   words.each_with_index do |word_id, index|
-    SentencesWord.create(sentence_id: sentence.id, word_id: word_id, order: index + 1)
+    pp "word_id -", word_id
+    relationship = SentencesWord.create(sentence_id: sentence.id, word_id: word_id, order: index + 1)
+    pp "created -", relationship
   end
 end
 
@@ -85,6 +104,11 @@ add_relationship(sentence1, [tengo.id, hambre.id])
 add_relationship(sentence2, [que.id, hiciste.id])
 add_relationship(sentence3, [esquiaba.id, a_menudo.id, cuando.id, era.id, nina.id])
 add_relationship(sentence4, [ojala.id, no.id, tuviera.id, tanto.id, trabajo.id])
+add_relationship(sentence5, [no.id, tuve.id, the_la.id, culpa.id])
+add_relationship(sentence6, [ella.id, tenia.id, cita.id, con.id, the_el.id, medico.id])
+add_relationship(sentence7, [han.id, tenido.id, cinco.id, semanas.id, para.id, hacerlo.id])
+add_relationship(sentence8, [tendremos.id, que.id, esperar.id])
+
 
 # User
 admin_user = User.create(username: "admin1", email: "admin@email.com", password: "qweqweqwe", admin: true)
