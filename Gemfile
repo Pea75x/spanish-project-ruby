@@ -9,6 +9,7 @@ gem "rack-cors"
 gem "jwt"
 gem 'dotenv-rails'
 gem "rack-attack"
+gem 'rack-attack'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
