@@ -27,6 +27,16 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
+      redis:
+        image: redis:latest
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+
     steps:
       - uses: actions/checkout@v3
 
@@ -52,24 +62,27 @@ jobs:
         run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
 
       - name: Run tests
+        env:
+          ENABLE_RACK_ATTACK: true
         run: bundle exec rspec
 
-  # deploy:
-  #   name: Deploy
-  #   needs: [test]
-  #   runs-on: ubuntu-latest
+  deploy:
+    name: Deploy
+    needs: [test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
-  #   steps:
-  #     - name: Deploy to production
-  #       uses: johnbeynon/render-deploy-action@v0.0.8
-  #       with:
-  #         service-id: ${{ secrets.RENDER_SERVICE_ID }}
-  #         api-key: ${{ secrets.RENDER_API_KEY }}
-  #         wait-for-success: true
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
 
-  #     - name: Drop, create, migrate and seed database
-  #       run: |
-  #         bin/rails db:drop RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-  #         bin/rails db:create RAILS_ENV=production
-  #         bin/rails db:migrate RAILS_ENV=production
-  #         bin/rails db:seed RAILS_ENV=production
+      - name: Drop, create, migrate and seed database
+        run: |
+          bin/rails db:drop RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+          bin/rails db:create RAILS_ENV=production
+          bin/rails db:migrate RAILS_ENV=production
+          bin/rails db:seed RAILS_ENV=production
