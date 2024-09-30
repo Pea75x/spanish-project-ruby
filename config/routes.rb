@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  require 'sidekiq/web'
 
   resources :sentences
   resources :words
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   resources :game_scores
   resources :verb_tenses
   post "auth/login", to: "auth#login"
+  mount Sidekiq::Web => '/sidekiq'
 end
