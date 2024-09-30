@@ -8,6 +8,7 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 gem "rack-cors"
 gem "jwt"
 gem 'dotenv-rails'
+gem 'rack-attack'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -32,6 +33,7 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
+gem 'redis'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
