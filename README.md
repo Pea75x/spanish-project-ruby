@@ -7,9 +7,11 @@ Deployed with render - https://spanish-project-ruby.onrender.com
 - Rails 7.0.8
 - Ruby 3.2.2
 - rack-cors
-- rspec-rails
+- rspec
 - factory_bot
 - Continuous Integration (CI)
+- Sidekiq (To see my work please view my open PR)
+- Rack Attack
 
 ![database-plan](./database.png)
 
