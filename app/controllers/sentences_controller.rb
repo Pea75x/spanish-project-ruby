@@ -10,7 +10,7 @@ class SentencesController < ApplicationController
     end
     
     if params[:themes]
-      @sentences = @sentences.where("themes @> ARRAY[?]::varchar[]", params[:themes]).order("RANDOM()").limit(15)
+      @sentences = @sentences.where("themes && ARRAY[?]::varchar[]", params[:themes]).order("RANDOM()").limit(15)
     end
 
     @total_sentences = @sentences.count unless @sentences.blank?
