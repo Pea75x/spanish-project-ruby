@@ -42,8 +42,8 @@ describe AuthController, type: :request do
         expect(@response).to have_http_status(:ok)
       end
 
-      it "returns the token" do
-        expect(@response.parsed_body.keys).to eq(["token"])
+      it "returns the token and user" do
+        expect(@response.parsed_body.keys).to eq(["token", "user"])
       end
     end
 

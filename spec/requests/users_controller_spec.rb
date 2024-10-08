@@ -37,7 +37,7 @@ describe UsersController, type: :request do
       end
 
       it "returns the token" do
-        expect(@response.parsed_body.keys).to eq(["token"])
+        expect(@response.parsed_body.keys).to eq(["token", "user"])
       end
     end
 
