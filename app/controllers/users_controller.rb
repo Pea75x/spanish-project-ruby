@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:create]
 
   def create
-    user = User.create(user_params)
+    @user = User.create(user_params)
 
-    if user.save
-      @token  = JWT.encode({ user_id: user.id, admin: user.admin }, ENV["SECRET_KEY"] )
+    if @user.save
+      token  = JWT.encode({ user_id: @user.id, admin: @user.admin }, ENV["SECRET_KEY"] )
 
-      render json: {token: @token }, status: :created
+      render json: {token: token, user: @user }, status: :created
     else
       render json: user.errors.full_messages.to_sentence, status: :bad_request
     end

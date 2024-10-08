@@ -3,12 +3,12 @@ class AuthController < ApplicationController
   skip_before_action :authorize, only: [:login]
 
   def login
-    user = User.where(username: auth_params[:username]).first
+    @user = User.where(username: auth_params[:username]).first
 
-    if user.present? && user.authenticate(auth_params[:password])
-      @token = JWT.encode({user_id: user.id, admin: user.admin }, ENV["SECRET_KEY"])
+    if @user.present? && @user.authenticate(auth_params[:password])
+      token = JWT.encode({user_id: @user.id, admin: @user.admin }, ENV["SECRET_KEY"])
 
-      render json: { token: @token }, status: :ok
+      render json: { token: token, user: @user }, status: :ok
     else
       render json: "Bad credentials", status: :unauthorized
     end
