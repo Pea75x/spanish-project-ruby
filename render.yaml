@@ -10,6 +10,7 @@ services:
     name: spanish_project_ruby
     runtime: ruby
     plan: free
+    region: frankfurt
     buildCommand: './bin/render-build.sh'
     startCommand: 'bundle exec rails server'
     envVars:
