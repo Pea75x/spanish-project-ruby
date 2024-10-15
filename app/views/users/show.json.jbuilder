@@ -1,2 +1,2 @@
 json.set! :token, @token
-json.partial! "users/user", user: @user
+json.set! :user, @user, partial: 'users/user', as: :user
