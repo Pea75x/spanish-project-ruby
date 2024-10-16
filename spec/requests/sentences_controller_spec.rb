@@ -43,7 +43,7 @@ describe SentencesController, type: :request do
 
       it "presents the data correctly" do
         data_attributes = @response.parsed_body["data"][0].keys
-        expect(data_attributes).to eq(["words", "id", "sentence", "translation", "themes",])
+        expect(data_attributes).to eq(["id", "sentence", "translation", "themes", "words"])
         
         expect(data_attributes).to_not include(["created_at", "updated_at"])
       end
@@ -111,7 +111,7 @@ describe SentencesController, type: :request do
     let(:request) { -> { get "/sentences/#{sentence1.id}", **request_config } }
 
     it "presents the data correctly" do
-      expect(@response.parsed_body.keys).to eq(["words", "id", "sentence", "translation", "themes"])
+      expect(@response.parsed_body.keys).to eq(["id", "sentence", "translation", "themes", "words"])
     end
   end
 
