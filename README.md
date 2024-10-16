@@ -11,6 +11,7 @@ Deployed with render - https://spanish-project-ruby.onrender.com
 - rspec
 - factory_bot
 - Continuous Integration (CI)
+- Redis
 - Sidekiq [(To see my work please view my open PR)](https://github.com/Pea75x/spanish-project-ruby/pull/1)
 - Rack Attack
 
