@@ -37,7 +37,7 @@ describe UsersController, type: :request do
       end
 
       it "returns the token" do
-        expect(@response.parsed_body.keys).to eq(["token"])
+        expect(@response.parsed_body.keys).to eq(["token", "user"])
       end
     end
 
@@ -63,7 +63,7 @@ describe UsersController, type: :request do
     let(:request) { -> { get "/users/#{user.id}", **request_config } }
 
     it "presents the data correctly" do
-      expect(@response.parsed_body.keys).to eq(["game_scores", "id", "username", "total_score"])
+      expect(@response.parsed_body["user"].keys).to eq(["id", "username", "total_score", "game_scores"])
     end
   end
 end

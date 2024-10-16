@@ -3,12 +3,14 @@ databases:
     databaseName: spanish_project_ruby
     user: spanish_project_ruby_user
     plan: free
+    region: frankfurt
 
 services:
   - type: web
     name: spanish_project_ruby
     runtime: ruby
     plan: free
+    region: frankfurt
     buildCommand: './bin/render-build.sh'
     startCommand: 'bundle exec rails server'
     envVars:
