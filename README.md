@@ -52,9 +52,9 @@ I used Rack Attack to block unknown routes, throttle spammy clients and prevent 
 
 ## Database
 
-### Verb Tense
-
 <img src="./database.png" alt='database' width="600" />
+
+### Verb Tense
 
 I have used a **verb tense** model to create links between main words like **Tener** to the different tenses and pronouns like **Tengo** and **Tenido** that are in the **Words** model. With this I was then able to easily present the data together in the front end -
 
