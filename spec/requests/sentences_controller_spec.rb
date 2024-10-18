@@ -147,7 +147,8 @@ describe SentencesController, type: :request do
             "id" => be_present,
             "translation" => "You have",
             "themes" => [],
-            "word" => "tienes"
+            "word" => "tienes",
+            "type_verb" => false
           }]
         )
       end
