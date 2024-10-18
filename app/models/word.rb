@@ -9,8 +9,6 @@ class Word < ApplicationRecord
   has_many :sentences_words
   has_many :sentences, through: :sentences_words
 
-  default_scope { order(:word) } 
-
   def verb_id_validation
     return if verb_id.nil?
     verb = Word.find(verb_id)
