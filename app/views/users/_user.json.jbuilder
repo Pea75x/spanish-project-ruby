@@ -1,4 +1,4 @@
-json.extract! user, :id, :username, :total_score
+json.extract! user, :id, :username, :total_score, :admin
 
 json.game_scores do
   json.array! user.game_scores do |score|
