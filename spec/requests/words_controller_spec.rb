@@ -105,6 +105,7 @@ describe WordsController, type: :request do
           "sentences" => [],
           "themes" => ["presente"],
           "verb" => {
+            "id" => be_present,
             "word" => "tener",
             "translation" => "To have"
           },
