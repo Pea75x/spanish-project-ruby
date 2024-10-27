@@ -26,6 +26,6 @@ class VerbTensesController < ApplicationController
   private
 
   def verb_tense_params
-    params.require(:verb_tense).permit(:name, :verb_id, :yo_id, :tu_id, :el_id, :nosotros_id, :ellos_id)
+    params.require(:verb_tense).permit(:name, :verb_id, :yo_id, :tu_id, :el_id, :nosotros_id, :ellos_id, :participle_id)
   end
 end
