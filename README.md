@@ -2,6 +2,8 @@
 
 Deployed with render - https://spanish-project-ruby.onrender.com
 
+I created this project as a way of noting everything I learnt from my spanish audio course, adding activities to test my knowledge. I am most proud of my implementation of CI and Sidekiq, which I have used everyday in my professional experience but not had the opportunity to configure and setup myself.
+
 ### Technologies used
 
 - Rails 7.0.8
