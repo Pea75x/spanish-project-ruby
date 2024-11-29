@@ -81,8 +81,7 @@ jobs:
           curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Authenticate with Heroku
-        run: |
-          echo "${{ secrets.HEROKU_API_KEY }}" | heroku auth:token
+        run: echo "${{ secrets.HEROKU_API_KEY }}" | heroku auth:token
 
       - name: Deploy to Heroku
         run: |
