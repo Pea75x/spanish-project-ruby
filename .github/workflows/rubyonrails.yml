@@ -67,15 +67,23 @@ jobs:
         run: bundle exec rspec
 
   deploy:
-    name: Deploy
+    name: Deploy to Heroku
     needs: [test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          wait-for-success: true
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Heroku CLI
+        uses: akshnz/heroku-cli-action@v1
+
+      - name: Authenticate with Heroku
+        run: |
+          echo "${{ secrets.HEROKU_API_KEY }}" | heroku auth:token
+
+      - name: Deploy to Heroku
+        run: |
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          git push heroku main
