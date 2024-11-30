@@ -1,6 +1,6 @@
 # Spanish Project backend
 
-Deployed with render - https://spanish-project-ruby.onrender.com
+Deployed with heroku - https://spanish-project-ruby-bf47539a234e.herokuapp.com
 
 I created this project as a way of noting everything I learnt from my spanish audio course, adding activities to test my knowledge. I am most proud of my implementation of CI and Sidekiq, which I have used everyday in my professional experience but not had the opportunity to configure and setup myself.
 
@@ -15,6 +15,7 @@ I created this project as a way of noting everything I learnt from my spanish au
 - Continuous Integration (CI)
 - Sidekiq [(To see my work please view my open PR)](https://github.com/Pea75x/spanish-project-ruby/pull/1)
 - Rack Attack
+- Heroku
 
 ## Preview project
 
@@ -68,7 +69,7 @@ I created a Many-to-Many Relationship between a **sentence** and the **words** w
 
 I then created a game that showed the sentence translation, where you need to type out each spanish word in the sentence. To do this I needed to ensure the words were stored in the **sentence.words** array in the correct order.
 
-<img src="./sentences.png" alt='sentences' width="600" />
+<img src="./sentences-page.png" alt='sentences' width="270" />
 
 To do this I added the column **order** to the sentences/words table and in the model I added `default_scope { order(:order) }`. Then when creating a sentence I would add the word_ids in the correct order along with the other parameters and the below code adds the correct order within the controller.
 
