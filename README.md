@@ -15,6 +15,7 @@ I created this project as a way of noting everything I learnt from my spanish au
 - Continuous Integration (CI)
 - Sidekiq [(To see my work please view my open PR)](https://github.com/Pea75x/spanish-project-ruby/pull/1)
 - Rack Attack
+- Redis
 - Heroku
 
 ## Preview project
