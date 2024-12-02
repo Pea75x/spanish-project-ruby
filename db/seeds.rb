@@ -6,12 +6,12 @@ trabajar = Word.create(word: "trabajar", translation: "To work", type_verb: true
 haber = Word.create(word: "haber", translation: "To have", type_verb: true)
 esperar = Word.create(word: "esperar", translation: "To wait", type_verb: true)
 
-yo = Word.create(word: "yo", translation: "I", verb: tener, themes: ["me"])
-tu = Word.create(word: "tú", translation: "You", verb: tener, themes: ["you"])
-el = Word.create(word: "él", translation: "He/she", verb: tener, themes: ["he/she"])
-ella = Word.create(word: "ella", translation: "He/she", verb: tener, themes: ["he/she"])
-nosotros = Word.create(word: "nosotros/as", translation: "we", verb: tener, themes: ["we"])
-ellos = Word.create(word: "ellos/ellas", translation: "They", verb: tener, themes: ["they"])
+yo = Word.create(word: "yo", translation: "I", themes: ["me"])
+tu = Word.create(word: "tú", translation: "You", themes: ["you"])
+el = Word.create(word: "él", translation: "He/she", themes: ["he/she"])
+ella = Word.create(word: "ella", translation: "He/she", themes: ["he/she"])
+nosotros = Word.create(word: "nosotros", translation: "we [m]", themes: ["we"])
+ellos = Word.create(word: "ellos", translation: "They [m]", themes: ["they"])
 the_la = Word.create(word: "la", translation: "the")
 the_el = Word.create(word: "el", translation: "the")
 
