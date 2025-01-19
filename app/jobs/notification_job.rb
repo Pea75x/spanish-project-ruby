@@ -3,6 +3,8 @@ require 'sidekiq'
 class NotificationJob
   include Sidekiq::Job
 
+  sidekiq_options retry: 5
+
   def perform
     Game.all.each do |game|
       top_scorer = game.game_scores.order(game_points: "desc").first&.user
