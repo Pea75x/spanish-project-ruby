@@ -115,20 +115,20 @@ admin_user = User.create(username: "admin1", email: "admin@email.com", password:
 agent_user = User.create(username: "user1", email: "user@email.com", password: "qweqweqwe")
 
 # Game
-game1 = Game.create(name: "past", themes: [
+game1 = Game.create(name: "Past tense - simple vs imperfect", themes: [
   "preterito_indefinido",
   "preterito_imperfecto",
   "preterito_perfecto_compuesto",
   "preterito_pluscuamperfecto"
   ])
-game2 = Game.create(name: "future", themes: [
+game2 = Game.create(name: "Future tense", themes: [
   "futuro_simple",
   "futuro_compuesto",
   "condicional_simple"
 ])
 
-game3 = Game.create(name: "weather", themes: ["weather"])
-game4 = Game.create(name: "hypothetical", themes: ["indicativo", "subjuntivo"])
+game3 = Game.create(name: "Weather", themes: ["weather"])
+game4 = Game.create(name: "Indicative vs subjunctive", themes: ["indicativo", "subjuntivo"])
 
 # Game score
 game_score1 = GameScore.create(user: agent_user, game: game1, game_points: 78)
