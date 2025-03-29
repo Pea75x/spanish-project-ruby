@@ -6,9 +6,9 @@ class NotificationJob
   sidekiq_options retry: 5
 
   def perform
-    Game.all.each do |game|
-      top_scorer = game.game_scores.order(game_points: "desc").first&.user
-
+    Game.includes(game_scores: :user).each do |game|
+      top_scorer = game.game_scores.max_by(&:game_points)&.user
+      
       if top_scorer.present?
         NotificationMailer.with(user: top_scorer, game: game).top_score_notifier.deliver_now
       else
