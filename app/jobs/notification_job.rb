@@ -7,8 +7,8 @@ class NotificationJob
 
   def perform
     Game.includes(game_scores: :user).each do |game|
-      top_scorer = game.game_scores.max_by(&:game_points)&.user
-      
+      top_scorer = game.game_scores.sort_by(&:game_points).last&.user
+
       if top_scorer.present?
         NotificationMailer.with(user: top_scorer, game: game).top_score_notifier.deliver_now
       else
