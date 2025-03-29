@@ -1,0 +1,4 @@
+notification_job:
+  cron: '0 12 * * 5' # Every friday at midday
+  class: 'NotificationJob'
+  queue: default
